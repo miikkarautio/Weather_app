@@ -3,6 +3,8 @@ import Globe from 'react-globe.gl';
 import React from 'react'
 import axios from 'axios'
 
+const api_key = import.meta.env.VITE_APP_API;
+
 function GlobeComponent({coords, setCoords}) {
   return(
     // position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh", zIndex: -1 | Moves the globe to the background
@@ -28,7 +30,7 @@ function App() {
 
   useEffect(() =>{
     if(latitude && longitude){
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={APIKEY}&units=metric`)
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${api_key}&units=metric`)
       .then(response => {setCity(response.data)})
       .catch(error => {console.log(error)})
     }
